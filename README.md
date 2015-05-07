@@ -1,0 +1,2 @@
+# MythosRTS
+A C++ RTS.
