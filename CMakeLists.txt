@@ -2,11 +2,29 @@
 cmake_minimum_required(VERSION 3.2.2)
 
 # Setup Project
-project(MythosRTS)
+project(MythosRTS CXX)
 
 # Version Number
 set (MythosRTS_VERSION_MAJOR 0)
 set (MythosRTS_VERSION_MINOR 0)
 
+# Set module path
+find_package(OpenGL REQUIRED)
+if(OpenGL_FOUND)
+	include_directories(${OPENGL_INCLUDE_DIRS})
+endif()
+
+find_package(GLUT REQUIRED)
+if(GLUT_FOUND)
+	include_directories(${GLUT_INCLUDE_DIRS})
+endif()
+
+find_package(GLEW REQUIRED)
+if(GLEW_FOUND)
+	include_directories(${GLEW_INCLUDE_DIRS})
+endif()
+
 # Add executable
-add_executable(MythosRTS MythosRTS.cpp)
+add_executable(MythosRTS ${MythosRTS_SOURCE_DIR}/source/MythosRTS.cpp)
+
+target_link_libraries(MythosRTS ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES})
