@@ -1,28 +1,76 @@
-#include "stdio.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 #include <GL/glew.h>
-#include <GL/glut.h>
+#include <glm/glm.hpp>
 
-static int make_resources(void){
-    return 1;
-}
+#ifdef __APPLE__
+#   include <GLUT/glut.h>
+#else
+#   include <GL/glut.h>
+#endif
 
-static void update_fade_factor(void){
-}
+float angle = 0.0f;
 
-static void render(void){
-    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
+void renderScene(void) {
+    // Clear Color and Depth Buffers
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    // Reset transformations
+    glLoadIdentity();
+    // Set the camera
+    gluLookAt(  0.0f, 0.0f, 10.0f,
+            0.0f, 0.0f,  0.0f,
+            0.0f, 1.0f,  0.0f);
+
+    glRotatef(angle, 0.0f, 1.0f, 0.0f);
+
+    glBegin(GL_TRIANGLES);
+        glVertex3f(-2.0f,-2.0f, -2.0f);
+        glVertex3f( 2.0f, 0.0f, 0.0);
+        glVertex3f( 0.0f, 2.0f, 0.0);
+
+        glVertex3f(-2.0f,-2.0f, 2.0f);
+        glVertex3f( 2.0f, 0.0f, 0.0);
+        glVertex3f( 0.0f, 2.0f, 0.0);
+
+        glVertex3f(-2.0f,-2.0f, 2.0f);
+        glVertex3f(-2.0f,-2.0f, -2.0f);
+        glVertex3f( 2.0f, 0.0f, 0.0);
+    glEnd();
+
+    angle+=1.0f;
+
     glutSwapBuffers();
 }
 
+void changeSize(int w, int h) {
+    if(h == 0)
+        h = 1;
+    float ratio = 1.0* w / h;
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glViewport(0, 0, w, h);
+    gluPerspective(45,ratio,1,1000);
+    glMatrixMode(GL_MODELVIEW);
+}
 
-int main(int argc, char* argv[]){
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
-	glutInitWindowSize(400, 300);
-	glutCreateWindow("Hello World");
-	glutDisplayFunc(&render);
-	glutIdleFunc(&update_fade_factor);
+int main(int argc, char** argv) {
+    glutInit(&argc, argv);
+
+    glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
+    glutInitWindowSize(320, 320);
+    glutInitWindowPosition(-1, -1);
+    glutCreateWindow("Mythos RTS");
+
+    glutDisplayFunc(renderScene);
+
+    glutReshapeFunc(changeSize);
+
+    // here is the idle func registration
+    glutIdleFunc(renderScene);
+
+    glutMainLoop();
+
+    return 1;
 }

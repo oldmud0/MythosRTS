@@ -9,6 +9,8 @@ set (MythosRTS_VERSION_MAJOR 0)
 set (MythosRTS_VERSION_MINOR 0)
 
 # Set module path
+SET(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+
 find_package(OpenGL REQUIRED)
 if(OpenGL_FOUND)
 	include_directories(${OPENGL_INCLUDE_DIRS})
@@ -24,7 +26,12 @@ if(GLEW_FOUND)
 	include_directories(${GLEW_INCLUDE_DIRS})
 endif()
 
+find_package(GLM REQUIRED)
+if(GLM_FOUND)
+	include_directories(${GLM_INCLUDE_DIRS})
+endif()
+
 # Add executable
 add_executable(MythosRTS ${MythosRTS_SOURCE_DIR}/source/MythosRTS.cpp)
 
-target_link_libraries(MythosRTS ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES})
+target_link_libraries(MythosRTS ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES} ${GLM_LIBRARIES})
