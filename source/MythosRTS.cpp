@@ -3,14 +3,13 @@
 
 #include <GL/glew.h>
 #include <glm/glm.hpp>
+using namespace glm;
 
 #ifdef __APPLE__
 #   include <GLUT/glut.h>
 #else
 #   include <GL/glut.h>
 #endif
-
-float angle = 0.0f;
 
 void renderScene(void) {
     // Clear Color and Depth Buffers
@@ -23,23 +22,7 @@ void renderScene(void) {
             0.0f, 0.0f,  0.0f,
             0.0f, 1.0f,  0.0f);
 
-    glRotatef(angle, 0.0f, 1.0f, 0.0f);
-
-    glBegin(GL_TRIANGLES);
-        glVertex3f(-2.0f,-2.0f, -2.0f);
-        glVertex3f( 2.0f, 0.0f, 0.0);
-        glVertex3f( 0.0f, 2.0f, 0.0);
-
-        glVertex3f(-2.0f,-2.0f, 2.0f);
-        glVertex3f( 2.0f, 0.0f, 0.0);
-        glVertex3f( 0.0f, 2.0f, 0.0);
-
-        glVertex3f(-2.0f,-2.0f, 2.0f);
-        glVertex3f(-2.0f,-2.0f, -2.0f);
-        glVertex3f( 2.0f, 0.0f, 0.0);
-    glEnd();
-
-    angle+=1.0f;
+    
 
     glutSwapBuffers();
 }
@@ -47,7 +30,7 @@ void renderScene(void) {
 void changeSize(int w, int h) {
     if(h == 0)
         h = 1;
-    float ratio = 1.0* w / h;
+    float ratio = 1.0 * w / h;
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glViewport(0, 0, w, h);
