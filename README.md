@@ -25,7 +25,7 @@ Here is a current set of goals for the MythoRTS project.
 # Install Directions
 1. Obtain cmake from [cmake.org](http://www.cmake.org/download/). _Make sure to install latest version from website!_
 2. Install System Libraries
-	- Linux
+	- Linux (Ubuntu)
 		1. `sudo apt-get install libglm-dev freeglut3 freeglut3-dev libglu1-mesa-dev libxmu-dev libxi-dev`
 	- Windows / Mac
 		1. ???
