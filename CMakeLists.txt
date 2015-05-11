@@ -31,7 +31,12 @@ if(GLM_FOUND)
 	include_directories(${GLM_INCLUDE_DIRS})
 endif()
 
+file(GLOB MythosRTS_SRC
+    "source/*.hpp"
+    "source/*.cpp"
+)
+
 # Add executable
-add_executable(MythosRTS ${MythosRTS_SOURCE_DIR}/source/MythosRTS.cpp)
+add_executable(MythosRTS ${MythosRTS_SRC})
 
 target_link_libraries(MythosRTS ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES} ${GLM_LIBRARIES})
