@@ -2,10 +2,10 @@
 
 class ResManager {
 private:
-    std::vector<RenderObject*> resList;
+    std::map<int, ResObject*> resList;
 
 public:
     ResManager();
-    RenderObject& loadResource(std::string modelName);
-    bool unloadResource(RenderObject* obj);
+    RenderObject& loadModel(std::string modelName);
+    bool unloadResource(ResObject* obj);
 };
