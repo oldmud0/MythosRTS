@@ -1,5 +1,8 @@
 #include "ResObject.hpp"
 
-class ResObject {
-	
+ResObject::ResObject(int _id)
+    :id(_id){}
+
+int ResObject::getId(){
+    return this->id;
 }

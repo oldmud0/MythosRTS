@@ -1,14 +1,15 @@
 #include "RenderObject.hpp"
 
-RenderObject::RenderObject(vector<glm::vec4> vertices,
-                           vector<glm::vec3> normals,
-                           vector<GLushort>  elements)
-{
-    this->vertices = vertices;
-    this->normals = normals;
-    this->elements = elements;
-}
+RenderObject::RenderObject( int _id, 
+                            std::vector<vec4>* _vertices,
+                            std::vector<vec3>* _normals,
+                            std::vector<GLushort>*  _elements)
+   :ResObject(_id),
+    vertices(_vertices),
+    normals(_normals),
+    elements(_elements)
+{}
 
-RenderObject::render() {
-    
+void RenderObject::render() {
+    return;
 }
