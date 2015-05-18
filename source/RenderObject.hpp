@@ -1,20 +1,12 @@
-#include "MythosRTS.hpp"
+#pragma once
 
-#ifndef VECTOR
-#   define VECTOR
-#   include <vector>
-#endif
+#include "ResObject.hpp"
 
-#ifndef GLM
-#   define GLM
-#   include <glm/glm.hpp>
+#include <vector>
+#include <GL/glew.h>
+#include <glm/glm.hpp>
 using namespace glm;
-#endif
 
-#ifndef RESOBJECT
-#   define RESOBJECT
-#   include "ResObject.hpp"
-#endif
 
 class RenderObject : public ResObject {
 private:

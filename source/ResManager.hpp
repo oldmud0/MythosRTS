@@ -1,50 +1,18 @@
-#include "MythosRTS.hpp"
+#pragma once
 
-#ifndef MAP
-#   define MAP
-#   include <map>
-#endif
+#include "ResObject.hpp"
+#include "RenderObject.hpp"
 
-#ifndef VECTOR
-#   define VECTOR
-#   include <vector>
-#endif
-
-#ifndef RESOBJECT
-#   define RESOBJECT
-#   include "ResObject.hpp"
-#endif
-
-#ifndef RENDEROBJECT
-#   define RENDEROBJECT
-#   include "RenderObject.hpp"
-#endif
-
-#ifndef STRING
-#   define STRING
-#   include <string>
-#endif
-
-#ifndef GLM
-#   define GLM
-#   include <glm/glm.hpp>
+#include <map>
+#include <vector>
+#include <string>
+#include <glm/glm.hpp>
 using namespace glm;
-#endif
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
-#ifndef IOSTREAM
-#   define IOSTREAM
-#   include <iostream>
-#endif
-
-#ifndef FILESTREAM
-#   define FILESTREAM
-#   include <fstream>
-#endif
-
-#ifndef SSTREAM
-#   define SSTREAM
-#   include <sstream>
-#endif
+#include <iostream>
 
 class ResManager {
 private:
@@ -52,6 +20,6 @@ private:
     int num_objects;
 public:
     ResManager();
-    RenderObject& loadModel(std::string modelName);
+    void loadModel(std::string modelName);
     bool unloadResource(int id);
 };

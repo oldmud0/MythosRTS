@@ -1,31 +1,14 @@
-#ifndef STDIO
-#	define STDIO
-#	include <stdio.h>
-#endif
+#pragma once
 
-#ifndef STDLIB
-#	define STDLIB
-#	include <stdlib.h>
-#endif
-
-#ifndef GLEW
-#	define GLEW
-#	include <GL/glew.h>
-#endif
-
-#ifndef GLM
-#	define GLM
-#	include <glm/glm.hpp>
+#include <stdio.h>
+#include <stdlib.h>
+#include <GL/glew.h>
+#include <glm/glm.hpp>
 using namespace glm;
-#endif
-
-#ifndef GLUT
-#	define GLUT
-#	ifdef __APPLE__
-#	   include <GLUT/glut.h>
-#	else
-#	   include <GL/glut.h>
-#	endif
+#ifdef __APPLE__
+#   include <GLUT/glut.h>
+#else
+#   include <GL/glut.h>
 #endif
 
 class Renderer {

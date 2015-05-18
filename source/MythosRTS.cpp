@@ -1,7 +1,11 @@
 #include "MythosRTS.hpp"
 
 int main(int argc, char** argv) {
-    Renderer* renderer = new Renderer(&argc, argv);
+    // Loading must happen BEFORE initializing the Renderer object
+    ResManager resources;
+    resources.loadModel("../res/suzanne.3DO");
+    
+    Renderer renderer(&argc, argv);
 
-    return 1;
+    return 0;
 }

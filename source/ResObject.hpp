@@ -1,4 +1,4 @@
-#include "MythosRTS.hpp"
+#pragma once
 
 class ResObject {
 protected:
