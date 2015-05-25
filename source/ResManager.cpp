@@ -9,7 +9,6 @@ ResManager::ResManager()
 */
 void ResManager::loadModel(std::string modelName) {
     std::cerr << "Model loading is unimplemented! We are going to switch to a furreal loader!" << std::endl;
-    exit(1);
 }
 
 bool ResManager::unloadResource(int id) {

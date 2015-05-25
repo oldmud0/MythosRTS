@@ -1,4 +1,4 @@
-# Requier CMAKE 3.2.2
+# Require CMAKE 3.2.2
 cmake_minimum_required(VERSION 3.2.2)
 
 # Setup Project
@@ -29,6 +29,11 @@ endif()
 find_package(GLM REQUIRED)
 if(GLM_FOUND)
 	include_directories(${GLM_INCLUDE_DIRS})
+endif()
+
+find_package(AssImp REQUIRED)
+if(AssImp_FOUND)
+	include_directores(${AssImp_INCLUDE_DIRS})
 endif()
 
 file(GLOB MythosRTS_SRC

@@ -11,8 +11,13 @@ using namespace glm;
 #include <iostream>
 #include <fstream>
 #include <sstream>
-
 #include <iostream>
+
+#include <cstdlib>
+
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
 
 class ResManager {
 private:
