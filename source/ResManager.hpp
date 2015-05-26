@@ -1,7 +1,8 @@
 #pragma once
 
 #include "ResObject.hpp"
-#include "RenderObject.hpp"
+#include "Model.hpp"
+#include "Texture.hpp"
 
 #include <map>
 #include <vector>
@@ -14,6 +15,7 @@ using namespace glm;
 #include <iostream>
 
 #include <cstdlib>
+#include <ctime>
 
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
@@ -25,6 +27,10 @@ private:
     int num_objects;
 public:
     ResManager();
-    void loadModel(std::string modelName);
+    int loadModel(std::string modelName);
+    std::vector<Texture> loadMaterialTextures(aiMaterial* mat, aiTextureType texType, std::string typeName, std::string path);
+    GLint getTextureFromFile(std::string path);
+
+    int getFreeId();
     bool unloadResource(int id);
 };

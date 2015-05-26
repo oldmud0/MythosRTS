@@ -1,6 +1,6 @@
-#include "RenderObject.hpp"
+#include "Mesh.hpp"
 
-void RenderObject::render() {
+void Mesh::render(Shader shader) {
     GLuint diffuseN = 1, specularN = 1;
     for(GLuint i = 0; i < this->textures.size(); i++) {
         glActiveTexture(GL_TEXTURE0 + i); //Set active texture before bind
@@ -15,20 +15,20 @@ void RenderObject::render() {
             ss << specularN++;
         num = ss.str();
 
-        glUniform1f(glGetUniformLocation(this->shader.program, ("material." + name + num).c_str()), i);
-        glBindTexture(GL_TEXTURE_2D, this->textures[i].id);
+        glUniform1f(glGetUniformLocation(shader.program, ("material." + name + num).c_str()), i);
+        glBindTexture(GL_TEXTURE_2D, this->textures[i].matId);
     }
 
     //Draw stuff
     glActiveTexture(GL_TEXTURE0);
 
-    glUseProgram(this->shader.program);
+    glUseProgram(shader.program);
     glBindVertexArray(this->vao);
     glDrawElements(GL_TRIANGLES, this->elements.size(), GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
 }
 
-void RenderObject::setup() {
+void Mesh::setup() {
     glGenVertexArrays(1, &this->vao);
 
     glGenBuffers(1, &this->vbo);
