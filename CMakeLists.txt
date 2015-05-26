@@ -33,7 +33,7 @@ endif()
 
 find_package(AssImp REQUIRED)
 if(AssImp_FOUND)
-	include_directores(${AssImp_INCLUDE_DIRS})
+	include_directores(${ASSIMP_INCLUDE_DIR})
 endif()
 
 file(GLOB MythosRTS_SRC
@@ -44,4 +44,4 @@ file(GLOB MythosRTS_SRC
 # Add executable
 add_executable(MythosRTS ${MythosRTS_SRC})
 
-target_link_libraries(MythosRTS ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES} ${GLM_LIBRARIES})
+target_link_libraries(MythosRTS ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES} ${GLM_LIBRARIES} ${ASSIMP_LIBRARY})

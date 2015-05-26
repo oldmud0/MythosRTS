@@ -1,5 +1,8 @@
 #pragma once
 
+#include "ResObject.hpp"
+#include "Mesh.hpp"
+
 #include <string>
 #include <vector>
 
@@ -9,9 +12,6 @@
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
-
-#include "ResObject.hpp"
-#include "Mesh.hpp"
 
 using namespace glm;
 
