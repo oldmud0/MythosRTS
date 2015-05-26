@@ -1,5 +1,5 @@
 #pragma once
 
-#include "Renderer.hpp"
 #include "ResManager.hpp"
+#include "Renderer.hpp"
 #include <iostream>

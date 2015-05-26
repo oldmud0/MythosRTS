@@ -1,6 +1,5 @@
 #pragma once
 
-#include "ResObject.hpp"
 #include "Model.hpp"
 #include "Texture.hpp"
 
@@ -21,10 +20,13 @@ using namespace glm;
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
+class Texture;
+class ResObject;
+
 class ResManager {
 private:
     std::map<int, ResObject*> resList;
-    int num_objects;
+    int num_objects, nextId;
 public:
     ResManager();
     int loadModel(std::string modelName);

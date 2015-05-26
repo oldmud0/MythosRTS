@@ -1,7 +1,7 @@
 #pragma once
 
-#include <string>
 #include "ResObject.hpp"
+#include <string>
 
 #include <glm/glm.hpp>
 #ifdef __APPLE__
@@ -10,7 +10,10 @@
 #   include <GL/glut.h>
 #endif
 
-struct Texture : public ResObject {
+class ResManager;
+
+class Texture : public ResObject {
+public:
 	GLuint matId;
 	
 	//Identify whether it is specular, diffuse, etc. so we can put in the right shader.
@@ -22,7 +25,8 @@ struct Texture : public ResObject {
         std::string _path,
         GLuint      _matId,
         std::string _type
-        ) : ResObject(_id, _rm, _path),
+    )
+    : ResObject(_id, _rm, _path),
         matId(_matId),
         type(_type)
     {}

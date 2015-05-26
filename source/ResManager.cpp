@@ -1,7 +1,8 @@
 #include "ResManager.hpp"
 
 ResManager::ResManager()
-    :num_objects(0)
+    :num_objects(0),
+     nextId(0)
 {}
 
 /**
@@ -17,7 +18,7 @@ int ResManager::loadModel(std::string modelName) {
     if (!scene || scene->mFlags == AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
     {
         std::cout << "Error loading model! " << importer.GetErrorString() << std::endl; //endl has horrible performance, but whatever.
-        return;
+        return -1;
     }
 
     Model::modelProcessNode(model, scene->mRootNode, scene);
@@ -25,6 +26,7 @@ int ResManager::loadModel(std::string modelName) {
     //Add to map
     this->resList[model->getId()] = dynamic_cast<ResObject *>(model);
     num_objects++;
+    return model->getId();
 }
 
 std::vector<Texture> ResManager::loadMaterialTextures(aiMaterial* mat, aiTextureType texType, std::string typeName, std::string path) {
@@ -41,14 +43,13 @@ std::vector<Texture> ResManager::loadMaterialTextures(aiMaterial* mat, aiTexture
 }
 
 GLint ResManager::getTextureFromFile(std::string path) {
-    //TODO
+    return -1;
 }
 
 //Gets a nonoccupied ID for a new ResObject.
 //Okay, this is a terrible implementation for a free ID. But it's for a good cause.
 int ResManager::getFreeId() {
-    srand(time(NULL));
-    return rand();
+    return nextId++;
 }
 
 bool ResManager::unloadResource(int id) {

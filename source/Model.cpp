@@ -1,4 +1,5 @@
 #include "Model.hpp"
+#include "ResManager.hpp"
 
 void Model::modelProcessNode(Model* model, aiNode* node, const aiScene* scene){
     //Process node meshes
@@ -58,8 +59,9 @@ Mesh Model::modelProcessMesh(Model* model, aiMesh* mesh, const aiScene* scene) {
     //Process material, if exists
     if (mesh->mMaterialIndex >= 0) {
         aiMaterial* mat = scene->mMaterials[mesh->mMaterialIndex];
-        std::vector<Texture> diffMaps = model->getResManager()->loadMaterialTextures(mat, aiTextureType_DIFFUSE, "tex_diffuse"),
-            specMaps = model->getResManager()->loadMaterialTextures(mat, aiTextureType_SPECULAR, "tex_specular");
+        std::vector<Texture> 
+            diffMaps = model->getResManager()->loadMaterialTextures(mat, aiTextureType_DIFFUSE, "tex_diffuse", model->getPath()),
+            specMaps = model->getResManager()->loadMaterialTextures(mat, aiTextureType_SPECULAR, "tex_specular", model->getPath());
         textures.insert(textures.end(), diffMaps.begin(), diffMaps.end());
         textures.insert(textures.end(), specMaps.begin(), specMaps.end());
     }

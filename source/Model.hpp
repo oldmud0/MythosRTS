@@ -1,7 +1,9 @@
 #pragma once
 
+#include <string>
 #include <vector>
 
+#include <GL/glew.h>
 #include <glm/glm.hpp>
 
 #include <assimp/Importer.hpp>
@@ -29,4 +31,5 @@ public:
 
     using ResObject::getId;
     using ResObject::getResManager;
+    using ResObject::getPath;
 };
