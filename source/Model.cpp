@@ -1,5 +1,12 @@
-#include "Model.hpp"
 #include "ResManager.hpp"
+
+//Just render each mesh in the model. It's that easy.
+void Model::render(Shader* shader) {
+    for(int i = 0; i < this->meshes.size(); i++) {
+        meshes[i].setup();
+        meshes[i].render(*shader);
+    }
+}
 
 void Model::modelProcessNode(Model* model, aiNode* node, const aiScene* scene){
     //Process node meshes

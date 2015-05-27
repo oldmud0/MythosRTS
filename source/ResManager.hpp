@@ -15,6 +15,7 @@ using namespace glm;
 
 #include <cstdlib>
 #include <ctime>
+#include <stdio.h>
 
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
@@ -22,6 +23,7 @@ using namespace glm;
 
 class Texture;
 class ResObject;
+class Shader;
 
 class ResManager {
 private:
@@ -34,5 +36,6 @@ public:
     GLint getTextureFromFile(std::string path);
 
     int getFreeId();
+    ResObject* getResource(int id);
     bool unloadResource(int id);
 };

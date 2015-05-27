@@ -2,6 +2,7 @@
 
 #include "ResObject.hpp"
 #include "Mesh.hpp"
+#include "Shader.hpp"
 
 #include <string>
 #include <vector>
@@ -19,12 +20,16 @@ class Model : public ResObject {
 private:
     std::vector<Mesh> meshes;
 public:
+    Shader* shader;
+
     Model(
         int         _id,
         ResManager* _rm,
         std::string _path
         ) : ResObject(_id, _rm, _path)
     {}
+
+    void render(Shader* shader);
 
     static void modelProcessNode(Model* model, aiNode* node, const aiScene* scene);
     static Mesh modelProcessMesh(Model* model, aiMesh* mesh, const aiScene* scene);

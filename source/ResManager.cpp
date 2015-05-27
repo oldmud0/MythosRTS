@@ -10,6 +10,8 @@ ResManager::ResManager()
 */
 int ResManager::loadModel(std::string modelName) {
     Assimp::Importer importer;
+
+    std::cout << "Adding model " << modelName << std::endl;    
     Model* model = new Model(getFreeId(), this, modelName.substr(0, modelName.find_last_of('/')));
 
     const aiScene* scene = importer.ReadFile(modelName, 
@@ -24,7 +26,8 @@ int ResManager::loadModel(std::string modelName) {
     Model::modelProcessNode(model, scene->mRootNode, scene);
 
     //Add to map
-    this->resList[model->getId()] = dynamic_cast<ResObject *>(model);
+    this->resList[model->getId()] = model;
+
     num_objects++;
     return model->getId();
 }
@@ -35,9 +38,10 @@ std::vector<Texture> ResManager::loadMaterialTextures(aiMaterial* mat, aiTexture
     {
         aiString str;
         mat->GetTexture(texType, i, &str);
-        Texture texture(getFreeId(), this, path, getTextureFromFile(std::string(str.C_Str()) + '/' + path), typeName);
+        Texture* texture = new Texture(getFreeId(), this, path, getTextureFromFile(std::string(str.C_Str()) + '/' + path), typeName);
 
-        textures.push_back(texture);
+        textures.push_back(*texture);
+        this->resList[texture->getId()] = texture;
     }
     return textures;
 }
@@ -50,6 +54,12 @@ GLint ResManager::getTextureFromFile(std::string path) {
 //Okay, this is a terrible implementation for a free ID. But it's for a good cause.
 int ResManager::getFreeId() {
     return nextId++;
+}
+
+//Gets the resource from an ID.
+//If the ID isn't valid then we bite the bullet and segfault since we can't do anything more.
+ResObject* ResManager::getResource(int id) {
+    return this->resList.find(id)->second;
 }
 
 bool ResManager::unloadResource(int id) {

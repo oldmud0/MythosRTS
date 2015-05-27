@@ -1,5 +1,10 @@
 #pragma once
 
+#include "ResManager.hpp"
+#include "Model.hpp"
+
+#include <vector>
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <GL/glew.h>
@@ -12,8 +17,13 @@ using namespace glm;
 #endif
 
 class Renderer {
-public:
-	Renderer(int* argc, char** argv);
-	void rendereModel();
 private:
+    std::vector<Model*> renderList;
+public:
+    static Renderer* globalRenderer;
+
+	Renderer(int* argc, char** argv);
+    void startLoop();
+	void renderModels();
+    void addModel(ResManager* resMgr, int id);
 };

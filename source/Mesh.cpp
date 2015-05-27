@@ -20,12 +20,15 @@ void Mesh::render(Shader shader) {
     }
 
     //Draw stuff
-    glActiveTexture(GL_TEXTURE0);
+    shader.use();
+    //glUniform1f(glGetUniformLocation(shader.program, "someUniform"), 1.0f);
 
-    glUseProgram(shader.program);
+    glActiveTexture(GL_TEXTURE0);
+    
     glBindVertexArray(this->vao);
     glDrawElements(GL_TRIANGLES, this->elements.size(), GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
+    
 }
 
 void Mesh::setup() {
