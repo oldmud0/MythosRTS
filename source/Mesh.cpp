@@ -26,6 +26,7 @@ void Mesh::render(Shader shader) {
     glActiveTexture(GL_TEXTURE0);
     
     glBindVertexArray(this->vao);
+    
     glDrawElements(GL_TRIANGLES, this->elements.size(), GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
     

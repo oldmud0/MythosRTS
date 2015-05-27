@@ -2,6 +2,8 @@
 
 Renderer* Renderer::globalRenderer = 0;
 
+GLfloat rotate;
+
 void render(void) {
     // Clear Color and Depth Buffers
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -9,13 +11,16 @@ void render(void) {
     // Reset transformations
     glLoadIdentity();
     // Set the camera
-    gluLookAt(  0.0f, 0.0f, 10.0f,
-            0.0f, 0.0f,  0.0f,
-            0.0f, 1.0f,  0.0f);
+    gluLookAt(  0.0f, 0.0f,  5.0f,
+                0.0f, 0.0f,  0.0f,
+                0.0f, 1.0f,  0.0f);
+    glRotatef(rotate, 0.f, 1.f, 0.f);
+    rotate += 2.5f;
 
     Renderer::globalRenderer->renderModels();
 
     glutSwapBuffers();
+    glutPostRedisplay();
 }
 
 void resize(int w, int h) {
@@ -50,9 +55,8 @@ Renderer::Renderer(int* argc, char** argv) {
 }
 
 void Renderer::startLoop() {
-    while(true) {
+    rotate = 0.f;
     glutMainLoop();
-    }
 }
 
 
